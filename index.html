@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" style="background:  #e6f576 ">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Lavanya's Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Work Storage</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <h1 align="center"> Lavanya's Portfolio</h1>
-    <hr>
-    <br>
-    <h1 align="center"> My Projects</h3>
-    <br>
-    <p>
-        <ul>
-        <li><a href="./public/movie-ranking.html">Movie Ranking Project</a></li><br>
-        <img src="./assets/images/Moviess.png" width="600" height="600">
-        <br>
-        <li><a href="./public/birthday-invite.html">Birthday Invitation Project</a></li><br>
-        <img src="./assets/images/Birthdayss.png" width="600" height="600">
-       </ul> 
-    </p>
-    <hr>
- <center>   <a href="./public/about.html">About Me</a>
-     <a href="./public/contact.html"> Contact Me</a> </center>
+  <h1>Student Work Storage</h1>
+  <div class="container">
+    <form id="work-form">
+      <input type="text" id="work-title" placeholder="Title" required>
+      <input type="url" id="work-link" placeholder="Link" required>
+      <button type="submit">Save</button>
+    </form>
+    <ol id="work-list"></ol>
+  </div>
 
+  <script src="script.js"></script>
 </body>
 </html>
