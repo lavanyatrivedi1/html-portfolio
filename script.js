@@ -35,7 +35,7 @@ function renderSavedLinks() {
     listItem.innerHTML = `
       <h3>${link.title}</h3>
       <p><a href="${link.link}" target="_blank">${link.link}</a></p>
-      <span class="delete-btn" onclick="deleteLink(event)"><i class="fas fa-trash"></i> Delete</span>
+      <span class="delete-btn" onclick="confirmDeleteLink(event)"><i class="fas fa-trash"></i> Delete</span>
     `;
     workList.appendChild(listItem);
   });
@@ -48,5 +48,36 @@ function deleteLink(event) {
   savedLinks = savedLinks.filter((savedLink) => savedLink.link !== link);
   localStorage.setItem('links', JSON.stringify(savedLinks));
 
+  item.remove();
+}
+
+function confirmDeleteLink(event) {
+  const item = event.target.parentNode;
+  const link = item.querySelector('a').getAttribute('href');
+
+  const confirmationBox = document.createElement('div');
+  confirmationBox.classList.add('confirmation-box');
+  confirmationBox.innerHTML = `
+    <p>Are you sure you want to delete this link?</p>
+    <button class="confirmation-btn cancel" onclick="cancelDeleteLink(event)">Cancel</button>
+    <button class="confirmation-btn delete" onclick="executeDeleteLink(event, '${link}')">Delete</button>
+  `;
+
+  item.appendChild(confirmationBox);
+}
+
+function cancelDeleteLink(event) {
+  const confirmationBox = event.target.parentNode;
+  confirmationBox.remove();
+}
+
+function executeDeleteLink(event, link) {
+  const confirmationBox = event.target.parentNode;
+  confirmationBox.remove();
+
+  savedLinks = savedLinks.filter((savedLink) => savedLink.link !== link);
+  localStorage.setItem('links', JSON.stringify(savedLinks));
+
+  const item = event.target.parentNode.parentNode;
   item.remove();
 }
